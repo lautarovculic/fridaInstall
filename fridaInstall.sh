@@ -52,7 +52,7 @@ detect_arch() {
     ok "ABI $abi mapped to asset $arch"
 }
 
-## Download latest frida-server--------- -----------------------------------------------
+## Download latest frida-server --------------------------------------------------------
 download_frida() {
     inf "Resolving latest version…"
     tag=$(curl -s https://api.github.com/repos/frida/frida/releases/latest | jq -r .tag_name)
@@ -69,7 +69,7 @@ download_frida() {
     chmod +x "$bin"
 }
 
-## Push & Run ------------------------------------------------------------------------
+## Push & Run --------------------------------------------------------------------------
 deploy_frida() {
     inf "Sending binary…"
     adb -s "$device" push "$bin" /data/local/tmp/ >/dev/null
@@ -85,7 +85,7 @@ deploy_frida() {
         || err "Not started; check SELinux or root"
 }
 
-###############################################################################
+########################################################################################
 select_device
 detect_arch
 download_frida
